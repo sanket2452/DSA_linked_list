@@ -23,6 +23,9 @@ public:
     }
 };
 */
+/*Brute force: traverse the entire list and count. 
+               again traverse upto count for even count and count+1 for odd count
+TC O(n+n) SC O(1)*/
 /*using fast and slow pointer TC O(n) SC O(1)*/
 Node *findMiddle(Node *head) {
     // Write your code here
