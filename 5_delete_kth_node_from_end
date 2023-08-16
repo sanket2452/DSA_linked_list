@@ -1,0 +1,73 @@
+/*
+Following is the class structure of the Node class:
+
+class Node
+{
+public:
+    int data;
+    Node *next;
+    Node()
+    {
+        this->data = 0;
+        next = NULL;
+    }
+    Node(int data)
+    {
+        this->data = data; 
+        this->next = NULL;
+    }
+    Node(int data, Node* next)
+    {
+        this->data = data;
+        this->next = next;
+    }
+};
+*/
+
+Node* removeKthNode(Node* head, int K)
+{
+
+
+    /*Brute force TC O(2N) SC O(1)*/
+    /*int cnt=1;
+
+    if(head->next==NULL) return NULL;
+    Node *temp=head;
+    while(temp->next!=NULL){
+        
+        temp=temp->next;
+        cnt++;
+    }
+    if(cnt==K){
+        Node *del=head;
+        head=head->next;
+        del->next=NULL;
+        return head;
+    }
+    int x=cnt-K;
+    temp=head;
+    Node *prev=NULL;
+    while(x--){
+        prev=temp;
+        temp=temp->next;
+    }
+    prev->next=temp->next;
+    temp->next=NULL;
+    return head;*/
+
+
+    /*optimal solution TC O(n) SC O(1)*/
+    Node *start=new Node();
+    start->next=head;
+    Node* fast=start;
+    Node *slow=start;
+    for(int i=1;i<=K;i++){
+        fast=fast->next;
+    }
+    while(fast->next!=NULL){
+        fast=fast->next;
+        slow=slow->next;
+    }
+    slow->next=slow->next->next;
+    return start->next;
+}
