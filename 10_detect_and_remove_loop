@@ -1,0 +1,53 @@
+/*************************************************
+    
+    class Node {
+        public :
+
+        int data;
+        Node *next;
+
+        Node(int data) {
+            this -> data = data;
+            this -> next = NULL;
+        }
+    };
+
+*************************************************/
+Node*  loop(Node *head){
+        Node *slow=head;
+        Node *fast=head;
+        Node *prev=head;
+        while(fast->next!=NULL){
+            fast=fast->next;
+            if(fast->next!=NULL){
+                fast=fast->next;
+            }
+            prev=slow;
+            slow=slow->next;
+            if(slow==fast) return fast;
+        }
+        return NULL;
+}
+
+Node *removeLoop(Node *head){
+    // Write your code here.
+    Node *x=loop(head);
+    if(x==NULL) return head;
+    Node *slow=head;
+    Node *prev=head;
+    if(x==slow){
+        while(x->next!=head){
+            x=x->next;
+        }
+        x->next=NULL;
+        return head;
+    }
+    while(slow!=x){
+        slow=slow->next;
+        prev=x;
+        x=x->next;
+         
+    }
+    prev->next=NULL;
+    return head;
+}
