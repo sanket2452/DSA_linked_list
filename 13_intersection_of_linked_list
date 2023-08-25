@@ -1,0 +1,78 @@
+/****************************************************************
+
+    Following is the class structure of the Node class:
+
+        class Node
+        {
+        public:
+            int data;
+            Node *next;
+            Node()
+            {
+                this->data = 0;
+                next = NULL;
+            }
+            Node(int data)
+            {
+                this->data = data;
+                this->next = NULL;
+            }
+            Node(int data, Node* next)
+            {
+                this->data = data;
+                this->next = next;
+            }
+        };
+
+*****************************************************************/
+int findLength(Node *head){
+    Node* temp=head;
+    int len=0;
+    while(temp!=NULL){
+        temp=temp->next;
+        len++;
+    }
+    return len;
+}
+Node* findIntersection(Node *firstHead, Node *secondHead)
+{
+    //Write your code here
+    /*int l1=findLength(firstHead);
+    int l2=findLength(secondHead);
+    int d=0;
+    Node *ptr1;
+    Node *ptr2;
+    if(l1>l2){
+        d=l1-l2;
+        ptr1=firstHead;
+        ptr2=secondHead;
+    }
+    else{
+        d=l2-l1;
+        ptr1=secondHead;
+        ptr2=firstHead;
+    }
+    while(d){
+        ptr1=ptr1->next;
+        if(ptr1==NULL) return NULL;
+        d--;
+    }
+    while(ptr1!=NULL&&ptr2!=NULL){
+        if(ptr1==ptr2) 
+            return ptr1;
+        ptr1=ptr1->next;
+        ptr2=ptr2->next;
+    }
+    return NULL;*/
+
+    if(firstHead==NULL||secondHead==NULL) return NULL;
+    Node *a=firstHead;
+    Node *b=secondHead;
+    while(a!=b){
+        a = a == NULL ? secondHead : a->next;
+        b = b == NULL ? firstHead  : b=b->next;
+
+    }
+    return a;
+}
+
